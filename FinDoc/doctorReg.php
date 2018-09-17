@@ -173,7 +173,7 @@
 												<option value="">Country</option>
 												<option value="Europe">Europe</option>
 												<option value="India">India</option>
-												<option value="Unated States">Unated States</option>
+												<option value="Unated States">US</option>
 											</select>
 										</div>
 									</div>

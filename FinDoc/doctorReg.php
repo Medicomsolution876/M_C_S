@@ -15,7 +15,8 @@
                                      	$address_register=$_POST['address_register'];
                                      	$pin_register=$_POST['pin_register'];
                                      	$office_phone_register=$_POST['office_phone_register'];
-                                     	$email_register=$_POST['email_register'];
+                                     	$email=$_POST['email'];
+                                     	$password = $_POST['password'];
 
 
 
@@ -31,14 +32,14 @@
      	$msg = "only valid email";
      }
 
-		      $query =  "SELECT id FROM doctor_reg WHERE email_register ='$email_register' " ;  
+		      $query =  "SELECT id FROM doctor_reg WHERE email ='$email' " ;  
              		$result = mysqli_query($connection,$query);
              		if ($result->num_rows > 0) {
                     $msg = "Email already exists in the database!";
 
 	          }    else
                    {
-     	            $query = "INSERT INTO doctor_reg VALUES ('', '$name','$lastname_register','$specialization','$city_register','$country_register','$address_register','$pin_register','$office_phone_register','$email_register') " ;
+     	            $query = "INSERT INTO doctor_reg VALUES ('', '$name','$lastname_register','$specialization','$city_register','$country_register','$address_register','$pin_register','$office_phone_register','$email','$password') " ;
 
                                       $result = mysqli_query($connection,$query);
 
@@ -47,7 +48,7 @@
                                        }
                                        else {
                                        	   
-                                       	     header("Location:login.php");
+                                       	     header("Location:loginDoc.php");
                                        }
 
 	                                      } 
@@ -202,7 +203,14 @@
 								<div class="row">
 									<div class="col-lg-12">
 										<div class="form-group">
-											<input type="email" class="form-control" placeholder="Email Address" name="email_register" >
+											<input type="email" class="form-control" placeholder="Email Address" name="email" >
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-lg-12">
+										<div class="form-group">
+											<input type="password" class="form-control" placeholder="Password" name="password" >
 										</div>
 									</div>
 								</div>

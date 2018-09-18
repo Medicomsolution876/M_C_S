@@ -24,7 +24,7 @@
 
           if($result->num_rows){
           echo "matched";
-          header("location:index.php");
+          header("location:admin_section/view_all_info.php");
       }
          else{
                 echo"<script>alert('username and password incorrect ');</script>" ;

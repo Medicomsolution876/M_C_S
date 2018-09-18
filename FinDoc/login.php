@@ -17,10 +17,9 @@
 
           $email = $_POST['email'];
           $password = $_POST['password'];
-          $email = $_POST['email'];
-          $password = $_POST['password'];
+        
 
-          $query = "SELECT * FROM users WHERE email='$email' AND password='$password'  UNION SELECT * FROM doctor_reg WHERE email= '$email' AND password='$password' " ;
+          $query = "SELECT * FROM users WHERE email='$email' AND password='$password' " ;
 
           $result = mysqli_query($connection,$query);
 

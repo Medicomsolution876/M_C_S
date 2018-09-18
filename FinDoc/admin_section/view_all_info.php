@@ -3,7 +3,7 @@
 <html lang="en">
 
 
-<!-- Mirrored from www.ansonika.com/findoctor/admin_section/add-listing.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 06 Jun 2018 14:43:52 GMT -->
+
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,14 +11,14 @@
   <meta name="description" content="">
   <meta name="author" content="Ansonika">
   <title>FINDOCTOR - Admin dashboard</title>
-	
+
   <!-- Favicons-->
   <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
   <link rel="apple-touch-icon" type="image/x-icon" href="img/apple-touch-icon-57x57-precomposed.png">
   <link rel="apple-touch-icon" type="image/x-icon" sizes="72x72" href="img/apple-touch-icon-72x72-precomposed.png">
   <link rel="apple-touch-icon" type="image/x-icon" sizes="114x114" href="img/apple-touch-icon-114x114-precomposed.png">
   <link rel="apple-touch-icon" type="image/x-icon" sizes="144x144" href="img/apple-touch-icon-144x144-precomposed.png">
-	
+
   <!-- Bootstrap core CSS-->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <!-- Icon fonts-->
@@ -30,7 +30,7 @@
   <link href="css/admin.css" rel="stylesheet">
   <!-- Your custom styles -->
   <link href="css/admin.css" rel="stylesheet">
-	
+
 </head>
 
 <body class="fixed-nav sticky-footer" id="page-top">
@@ -50,7 +50,7 @@
         </li>
 
 
-		
+
 
         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="My profile">
           <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseProfile" data-parent="#exampleAccordion">
@@ -111,13 +111,13 @@
 			      			<td>Country</td>
 			      		</tr>
 			      	</thead>
-			      
+
 			        <tbody>
-			  <?php 
+			  <?php
                      $query = "SELECT * FROM doctor_reg ";
                      $view_all_info = mysqli_query($connection,$query);
                      while($row=mysqli_fetch_assoc($view_all_info)){
-                          
+
                           $id = $row['id'];
                           $firstName = $row['name_register'];
                           $LastName = $row['lastname_register'];
@@ -141,8 +141,8 @@
                           echo "<td>$Zipcode</td>";
                           echo "<td>$phone</td>";
                           echo "<td>$Country</td>";
-                          echo "<td><a href='doc_Panel.php?edit=$id'>Edit</td>";
-                        echo "</tr>";
+                          echo "<td><a href= `#` onClick='MyWindow=window.open(`signin_foredit.php`,`MyWindow`,width=100,height=100); return false;'>Edit</td>";
+                          echo "</tr>";
 
                      }
 
@@ -172,8 +172,8 @@
 			<!-- /row-->
 		</div>
 		<!-- /box_general-->
-		
-		
+
+
 
 
 		<!-- /box_general-->
@@ -227,7 +227,7 @@
     <script src="js/admin.js"></script>
 	<!-- Custom scripts for this page-->
 	<script src="vendor/dropzone.min.js"></script>
-	
+
 </body>
 
 <!-- Mirrored from www.ansonika.com/findoctor/admin_section/add-listing.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 06 Jun 2018 14:43:54 GMT -->

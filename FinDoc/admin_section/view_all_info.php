@@ -1,4 +1,4 @@
- <?php  include '../includes/db.php' ; ?>
+  <?php  include '../includes/db.php' ; ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,7 +9,22 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
-  <meta name="author" content="Ansonika">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+ <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+ <style>
+ .modal-header, h4, .close {
+     background-color: #5cb85c;
+     color:white !important;
+     text-align: center;
+     font-size: 30px;
+ }
+ .modal-footer {
+     background-color: #f9f9f9;
+ }
+ </style>
+
   <title>FINDOCTOR - Admin dashboard</title>
 
   <!-- Favicons-->
@@ -31,9 +46,11 @@
   <!-- Your custom styles -->
   <link href="css/admin.css" rel="stylesheet">
 
+
 </head>
 
 <body class="fixed-nav sticky-footer" id="page-top">
+
   <!-- Navigation-->
   <nav class="navbar navbar-expand-lg navbar-dark bg-default fixed-top" id="mainNav">
     <a class="navbar-brand" href="../loginDoc.php"><img src="img/logo.png" data-retina="true" alt="" width="163" height="36"></a>
@@ -141,8 +158,56 @@
                           echo "<td>$Zipcode</td>";
                           echo "<td>$phone</td>";
                           echo "<td>$Country</td>";
-                          echo "<td><a href= `#` onClick='MyWindow=window.open(`signin_foredit.php`,`MyWindow`,width=100,height=100); return false;'>Edit</td>";
-                          echo "</tr>";
+                          echo "<td> <div class='container'>
+  
+  <!-- Trigger the modal with a button -->
+  <button type='button' class='btn btn-default btn-l' id='myBtn'>Login</button>
+
+  <!-- Modal -->
+  <div class='modal fade' id='myModal' role='dialog'>
+    <div class='modal-dialog'>
+
+      <!-- Modal content-->
+      <div class='modal-content'>
+        <div class='modal-header'>
+          <button type='button' class='close' data-dismiss='modal'>&times;</button>
+          <h4 style='color:red;'><span class='glyphicon glyphicon-lock'></span> Login</h4>
+        </div>
+        <div class='modal-body'>
+          <form role='form'>
+            <div class='form-group'>
+              <label for='usrname'><span class='glyphicon glyphicon-user'></span> Username</label>
+              <input type='text' class='form-control' id='usrname' placeholder='Enter email'>
+            </div>
+            <div class='form-group'>
+              <label for='psw'><span class='glyphicon glyphicon-eye-open'></span> Password</label>
+              <input type='text' class='form-control' id='psw' placeholder='Enter password'>
+            </div>
+            <div class='checkbox'>
+              <label><input type='checkbox' value='' checked>Remember me</label>
+            </div>
+            <button type='submit' class='btn btn-default btn-success btn-block'><span class='glyphicon glyphicon-off'></span> Login</button>
+          </form>
+        </div>
+        <div class='modal-footer'>
+          <button type='submit' class='btn btn-default btn-default pull-left' data-dismiss='modal'><span class='glyphicon glyphicon-remove'></span> Cancel</button>
+          <p>Not a member? <a href='#'>Sign Up</a></p>
+          <p>Forgot <a href='#'#'>Password?</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+$(document).ready(function(){
+    $('#myBtn').click(function(){
+        $('#myModal').modal();
+    });
+});
+</script>
+ </td>";
+                          echo "</tr>"
+                          ;
 
                      }
 
@@ -227,7 +292,7 @@
     <script src="js/admin.js"></script>
 	<!-- Custom scripts for this page-->
 	<script src="vendor/dropzone.min.js"></script>
-
+ <script src="js/modal.js"></script>
 </body>
 
 <!-- Mirrored from www.ansonika.com/findoctor/admin_section/add-listing.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 06 Jun 2018 14:43:54 GMT -->

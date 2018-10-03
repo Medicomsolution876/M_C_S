@@ -2,14 +2,14 @@
 
 
 <?php  include 'includes/header.php' ; ?>
-	
+
 	<div id="preloader" class="Fixed">
 		<div data-loader="circle-side"></div>
 	</div>
 	<!-- /Preload-->
-	
-	<div id="page">		
-	<header class="header_sticky">	
+
+	<div id="page">
+	<header class="header_sticky">
 		<a href="#menu" class="btn_mobile">
 			<div class="hamburger hamburger--spin" id="hamburger">
 				<div class="hamburger-box">
@@ -23,18 +23,18 @@
 		<?php include 'includes/navigation.php';  ?>
 
 	<!-- /header -->
-	
+
 	<main>
 		<div class="hero_home version_1">
 			<div class="content">
 				<h3>Find a Doctor!</h3>
 				<p>
-					
+
 				</p>
 				<form method="post" action="">
 					<div id="custom-search-input">
 						<div class="input-group">
-							<input type="text" class=" search-query" placeholder="Please write your Symptoms ....">
+							<input type="text" class=" search-query" placeholder="">
 							<input type="submit" class="btn_search" value="Search">
 						</div>
 						<ul>
@@ -55,8 +55,8 @@
 								<label for="Get Your Prescription">Get Your Prescription</label>
 								<li><a href="404.html">404 page</a></li>
 							</li> -->
-							<center> <li><a href=<?php echo "search.php" ; ?> >Get Your Prescription</a></li></center>	
-						 </ul>					
+							<center> <li><a href=<?php echo "search.php" ; ?> >Get Your Prescription</a></li></center>
+						 </ul>
 					</div>
 				</form>
 			</div>
@@ -149,15 +149,15 @@
 				<!-- /carousel -->
 	<!--		</div>
 			<!-- /container -->
-	<!--	</div>   
-		<!-- /white_bg -->   
+	<!--	</div>
+		<!-- /white_bg -->
 
 
 
 		<div class="container margin_120_95">
 			<div class="main_title">
 				<h2>Find your doctor or clinic</h2>
-			
+
 			</div>
 			<div class="row justify-content-center">
 				<div class="col-xl-4 col-lg-5 col-md-6">

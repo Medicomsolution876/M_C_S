@@ -1,60 +1,85 @@
 
 		<?php include "includes/header.php" ; ?>
-<?php   
+<?php
        $msg = "";
 
 
-		                                          
+
   if(isset($_POST['submit_btn'])){
        $firstName = $_POST['firstName'];
        $lastName  = $_POST['lastName'];
        $email     = $_POST['email'];
        $password  = $_POST['password'];
        $cpassword = $_POST['cpassword'];
+			 $type      = $_POST['type'];
+			 $target_dir = "img/";
+			 $target_file = $target_dir . basename($_FILES["myimage"]["name"]);
+			 $uploadOK=1;
+			 $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+			  $check = getimagesize($_FILES["myimage"]["tmp_name"]);
+				if($check !== false) {
+        echo "File is an image - " . $check["mime"] . ".";
+        $uploadOk = 1;
+    } else {
+        echo "File is not an image.";
+        $uploadOk = 0;
+    }
+		if ($uploadOk == 0) {
+    echo "Sorry, your file was not uploaded.";
+
+} else {
+    if (move_uploaded_file($_FILES["myimage"]["tmp_name"], $target_file)) {
+        echo "The file ". basename( $_FILES["myimage"]["name"]). " has been uploaded.";
+    } else {
+        echo "Sorry, there was an error uploading your file.";
+    }
+}
+
+
 /*
     $firstName=  Test_User_Input($_POST['firstName']);
     $lastName =  Test_User_Input($_POST['lastName']);
     $email  =  Test_User_Input($_POST['email']);   */
-    
+
 /*if((!preg_match("/^[a-zA-Z ]*$/",$firstName))&& (!preg_match("/^[a-zA-Z ]*$/",$lastName))&&(!preg_match("/[a-zA-Z0-9._-]{3,}@[a-zA-z0-9._-]{3,}[.]{1}[a-zA-z0-9._-]{2,}/", $email))){
 
 
-	$msg = "check inputs"; 
+	$msg = "check inputs";
 }  */
     if (!preg_match("/^[a-zA-Z ]*$/",$firstName)){
     	$msg =  "Only letters and white-spaces are allowed";
     } elseif (!preg_match("/^[a-zA-Z ]*$/",$lastName)&&(!preg_match("/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$^/", $email))) {
-    	
+
 
     	$msg =  "Only letters and white-spaces are allowed";
 
     }
-        
-       
-       
 
-       
+
+
+
+
 	else  {
 
-		      $query = "SELECT id FROM users WHERE email='$email'" ; 
+		      $query = "SELECT id FROM users WHERE email='$email'" ;
              		$result = mysqli_query($connection,$query);
              		if ($result->num_rows > 0) {
                     $msg = "Email already exists in the database!";
 
 	          }    else
                    {
-     	            $query = "INSERT INTO users  VALUES ( '' ,'$firstName' , '$lastName' , '$email' , '$password' ) ";
+     	            $query = "INSERT INTO Users  VALUES ( '' ,'$firstName' , '$lastName' , '$email' , '$password','type', 'image') ";
 
                       $result = mysqli_query($connection,$query);
-                       
+
 
 
                      	}
 
 
-                
-	
-} 
+
+
+}
 
 
 
@@ -70,7 +95,7 @@
 */
 
 
-                
+
 
 		                                              /*   $query = "INSERT INTO users  VALUES ( '' ,'$firstName' , '$lastName' , '$email' , '$password' ) ";
 
@@ -82,7 +107,7 @@
 		                                                 	 exit(header("Location:login.php")) ;
 		                                                 } */
 
-		                                             
+
 
 
 		                                            ?>
@@ -95,9 +120,9 @@
 		<div data-loader="circle-side"></div>
 	</div>
 	<!-- /Preload-->
-	
-	<div id="page">		
-	<header class="header_sticky">	
+
+	<div id="page">
+	<header class="header_sticky">
 		<a href="#menu" class="btn_mobile">
 			<div class="hamburger hamburger--spin" id="hamburger">
 				<div class="hamburger-box">
@@ -119,7 +144,7 @@
 						<li><a href="register-doctor.html"><i class="pe-7s-add-user"></i></a></li>
 					</ul>
 					<nav id="menu" class="main-menu">
-						
+
 					</nav>
 					<!-- /main-menu -->
 				</div>
@@ -128,7 +153,7 @@
 		<!-- /container -->
 	</header>
 	<!-- /header -->
-	
+
 	<main>
 		<div class="bg_color_2">
 			<div class="container margin_60_35">
@@ -138,40 +163,51 @@
 						<div class="col-md-5">
 
 						<?php if($msg !="") echo $msg."<br><br>";  ?>
-							<form action="userReg.php" method="post">
+							<form action="userReg.php" method="post" enctype="multipart/form-data">
 								<div class="box_form">
 									<div class="form-group">
-										<label>Name</label>
-										<input type="text" name="firstName" class="form-control" placeholder="Your name" required />
+										<label>First Name</label>
+										<input type="text" name="firstName" class="form-control" placeholder="Your First name" required />
 
                                   	</div>
 									<div class="form-group">
 										<label>Last name</label>
-										<input type="text" name="lastName" class="form-control" placeholder="Your last name" required />
-										 
+										<input type="text" name="lastName" class="form-control" placeholder="Your Last name" required />
+
 									</div>
 									<div class="form-group">
 										<label>Email</label>
 										<input type="email" name="email" class="form-control" placeholder="Your email address" required type="email" / >
-										
+
 									</div>
 									<div class="form-group">
 										<label>Password</label>
 										<input type="password" name="password" class="form-control" id="password1" placeholder="Your password" required / >
 									</div>
+
+
 									<div class="form-group">
 										<label>Confirm password</label>
 										<input type="password"  name="cpassword" class="form-control" id="password2" placeholder="Confirm password" required />
 									</div>
+									<div class="form-group">
+										<label>You are?</label>
+										<input type="radio" name="type" value="Patient">Patient</input>
+                    <input type="radio" name="type" value="Doctor">Doctor</input>
+									</div>
+									<div>
+										<label>Upload your image</label>
+									<input type="file" name="myimage">
+								</div>
 									<div id="pass-info" class="clearfix"></div>
 								<div class="checkbox-holder text-left">
 										<div class="checkbox_2">
-											<input type="checkbox" value="accept_2" id="check_2" name="submit_btn" checked> 
+											<input type="checkbox" value="accept_2" id="check_2" name="submit_btn" checked>
 											<label for="check_2"><span>I Agree to the <strong>Terms &amp; Conditions</strong></span></label>
 										</div>
 									</div>
 									<div class="form-group text-center add_top_30">
-										<input class="btn_1" type="submit"  name="submit_btn">
+										<input class="btn_1" type="submit" value="Sign up" name="submit_btn">
 									</div>
 
 								</div>
@@ -187,7 +223,7 @@
 		</div>
 	</main>
 	<!-- /main -->
-	
+
 	<?php  include "includes/footer.php" ;  ?>
 	<!--/footer-->
 	</div>
@@ -200,15 +236,10 @@
 	<script data-cfasync="false" src="../cdn-cgi/scripts/f2bf09f8/cloudflare-static/email-decode.min.js"></script><script src="js/jquery-2.2.4.min.js"></script>
 	<script src="js/common_scripts.min.js"></script>
 	<script src="js/functions.js"></script>
-     
+
 	<!-- SPECIFIC SCRIPTS -->
 	<script src="js/pw_strenght.js"></script>
 </body>
 
 
 </html>
-
-
-
-
-
